@@ -142,7 +142,7 @@ i2session.headers  = {
     'Accept': 'application/json',
     }
 sess_args = requests.adapters.HTTPAdapter(
-    max_retries = Retry(read=5, connect=10, backoff_factor=1)
+    max_retries = Retry(read=5, connect=10, backoff_factor=1, verify=False)
     )
 
 try:
@@ -264,7 +264,7 @@ def i2events(self, events=cfg['events'], url=api_url):
             auth = api_auth,
             headers = {'Accept':'application/json', 'X-HTTP-Method-Override':'POST'},
             data=json.dumps(data),
-            stream=True)
+            stream=True, verify=False)
             
             if self.stream.status_code == 200:
                 try:
