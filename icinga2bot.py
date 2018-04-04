@@ -137,7 +137,7 @@ api_ca  = cfg['server']['ca']
 
 i2session = requests.session()
 i2session.auth = api_auth
-i2session.verify = api_ca
+#i2session.verify = api_ca
 i2session.headers  = {
     'Accept': 'application/json',
     }
@@ -262,7 +262,6 @@ def i2events(self, events=cfg['events'], url=api_url):
         try:
             self.stream = requests.post(url, 
             auth = api_auth,
-            verify = api_ca,
             headers = {'Accept':'application/json', 'X-HTTP-Method-Override':'POST'},
             data=json.dumps(data),
             stream=True)
